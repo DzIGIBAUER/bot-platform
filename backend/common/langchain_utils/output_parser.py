@@ -11,6 +11,7 @@ When responding to user MAKE SURE to use the following syntax:
 }}}}
 ```
 When using a tool MAKE SURE to use the following syntax:
+Make sure both tool and input keys are present.
 ```json
 {{{{
 "tool": "Name of the tool",

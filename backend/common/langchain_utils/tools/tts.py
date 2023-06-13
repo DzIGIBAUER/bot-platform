@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 class TextToSpeechTool(BaseTool):
     name="tts"
-    description="Use this tool if users wants to hear you say something. 250 characters AT MOST. KEEP IT SHORT"
+    description="This tool grants you the ability to express yourself using voice. Use this tool if user wants you to send a voice message."
     return_direct = True
     handle_tool_error = True
     

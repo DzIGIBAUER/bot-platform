@@ -10,7 +10,7 @@ from langchain.tools import DuckDuckGoSearchRun
 from chatbot.models import Chatbot
 
 from .output_parser import OutputParser
-from .prompts import SUFFIX, SYSTEM
+from .prompts import SUFFIX, SYSTEM, TEMPLATE_TOOL_RESPONSE
 from .tools import tts
 
 import logging
@@ -27,7 +27,7 @@ class ChatbotResponse(TypedDict):
 
 
 static_tools = [
-    DuckDuckGoSearchRun(description="Use this tool to gather information about topics you don't know answer for.")
+    DuckDuckGoSearchRun()
 ]
 
 
@@ -58,7 +58,7 @@ def generate_response(chatbot: Chatbot, input: str, user: str | None = None, his
     )
 
     llm_chain = LLMChain(llm=llm, prompt=prompt)
-    agent = ConversationalChatAgent(llm_chain=llm_chain, tools=tools, verbose=True, output_parser=OutputParser())
+    agent = ConversationalChatAgent(llm_chain=llm_chain, tools=tools, verbose=True, output_parser=OutputParser(), template_tool_response=TEMPLATE_TOOL_RESPONSE)
     agent_chain = AgentExecutor.from_agent_and_tools(agent=agent, tools=tools, verbose=True, memory=memory)
 
     results = agent_chain.run(
