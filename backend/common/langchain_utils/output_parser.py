@@ -11,11 +11,11 @@ When responding to user MAKE SURE to use the following syntax:
 }}}}
 ```
 When using a tool MAKE SURE to use the following syntax:
-Make sure both tool and input keys are present.
+Make sure BOTH `tool` and `input` keys are present.
 ```json
 {{{{
-"tool": "Name of the tool",
-"input": "Input for the tool"
+"tool": "Place name of the tool here",
+"input": "Place input for the tool here"
 }}}}
 ```
 REPLY WITH NOTHING ELSE EXCEPT THE JSON OBJECT

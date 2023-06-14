@@ -11,7 +11,7 @@ from chatbot.models import Chatbot
 
 from .output_parser import OutputParser
 from .prompts import SUFFIX, SYSTEM, TEMPLATE_TOOL_RESPONSE
-from .tools import tts
+from .tools import tts, image
 
 import logging
 
@@ -24,6 +24,7 @@ class ChatbotResponse(TypedDict):
     response: str | None
     audio_url: str | None
     audio_text: str | None
+    image_url: str | None
 
 
 static_tools = [
@@ -31,11 +32,11 @@ static_tools = [
 ]
 
 
-
 def generate_response(chatbot: Chatbot, input: str, user: str | None = None, history: list[BaseMessage] | None = None) -> ChatbotResponse:
     
     tools = [
-        tts.TextToSpeechTool(voice_name=chatbot.voice_name)
+        tts.TextToSpeechTool(voice_name=chatbot.voice_name),
+        image.ImageGenerationTool()
     ] + static_tools
 
     chat_history = ChatMessageHistory(messages=history)
